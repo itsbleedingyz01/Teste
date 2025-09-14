@@ -50,6 +50,7 @@ local window = library:AddWindow("Farming V1", {
     main_color = mainColor,
     min_size = Vector2.new(700, 650),
     can_resize = false,
+    show_icon = false,
 })
 
 -- Anti AFK Credits itsbleedingy
