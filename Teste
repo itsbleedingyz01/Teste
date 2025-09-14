@@ -52,18 +52,21 @@ local window = library:AddWindow("Farming V1", {
     can_resize = false,
     show_icon = false,
 })
+
 -- Remove qualquer imagem ao lado do título, mesmo que apareça depois
 task.spawn(function()
     while task.wait(0.1) do
         if window.TitleFrame then
-            local img = window.TitleFrame:FindFirstChildOfClass("ImageLabel")
-            if img then
-                img:Destroy()
-                break -- sai do loop depois de destruir
+            for _, img in pairs(window.TitleFrame:GetChildren()) do
+                if img:IsA("ImageLabel") then
+                    img:Destroy()
+                end
             end
+            break -- sai do loop depois de destruir todas as ImageLabels
         end
     end
 end)
+
 -- Anti AFK Credits itsbleedingy
 local antiAFKConnection
 local function setupAntiAFK()
