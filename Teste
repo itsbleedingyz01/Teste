@@ -52,12 +52,15 @@ local window = library:AddWindow("Farming V1", {
     can_resize = false,
     show_icon = false,
 })
--- Remove a imagem ao lado do título
-pcall(function()
-    if window.TitleFrame then
-        local img = window.TitleFrame:FindFirstChildOfClass("ImageLabel")
-        if img then
-            img:Destroy()
+-- Remove qualquer imagem ao lado do título, mesmo que apareça depois
+task.spawn(function()
+    while task.wait(0.1) do
+        if window.TitleFrame then
+            local img = window.TitleFrame:FindFirstChildOfClass("ImageLabel")
+            if img then
+                img:Destroy()
+                break -- sai do loop depois de destruir
+            end
         end
     end
 end)
