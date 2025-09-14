@@ -62,7 +62,6 @@ task.spawn(function()
                     img:Destroy()
                 end
             end
-            break -- sai do loop depois de destruir todas as ImageLabels
         end
     end
 end)
