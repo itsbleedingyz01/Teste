@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 
 -- URL do repositório com a whitelist
-local whitelistURL = "https://raw.githubusercontent.com/itsbleedingyz01/Wl/refs/heads/main/Wl"
+local whitelistURL = "https://raw.githubusercontent.com/itsbleedingyz01/Wl1/refs/heads/main/Wl1"
 
 -- Puxa a whitelist do seu repositório
 local success, whitelist = pcall(function()
