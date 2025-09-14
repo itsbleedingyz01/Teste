@@ -53,13 +53,13 @@ local window = library:AddWindow("Farming V1", {
     show_icon = false,
 })
 
--- Remove qualquer imagem ao lado do título, mesmo que apareça depois
+-- Remove qualquer ícone ao lado do título
 task.spawn(function()
     while task.wait(0.1) do
-        if window.TitleFrame then
-            for _, img in pairs(window.TitleFrame:GetChildren()) do
-                if img:IsA("ImageLabel") then
-                    img:Destroy()
+        if window and window.TitleFrame then
+            for _, obj in pairs(window.TitleFrame:GetChildren()) do
+                if obj:IsA("ImageLabel") or obj:IsA("ImageButton") or obj.Name:lower():find("icon") then
+                    obj:Destroy()
                 end
             end
         end
