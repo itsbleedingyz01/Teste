@@ -1,4 +1,35 @@
 local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+-- URL do repositório com a whitelist
+local whitelistURL = "https://raw.githubusercontent.com/itsbleedingyz01/Wl/refs/heads/main/Wl"
+
+-- Puxa a whitelist do seu repositório
+local success, whitelist = pcall(function()
+    return loadstring(game:HttpGet(whitelistURL, true))()
+end)
+
+if not success or type(whitelist) ~= "table" then
+    warn("Não foi possível carregar a whitelist ou formato inválido. Negando acesso.")
+    Player:Kick("Erro ao carregar whitelist.")
+    return
+end
+
+-- Checa se o jogador está na whitelist
+local allowed = false
+for _, name in ipairs(whitelist) do
+    if name == Player.Name then
+        allowed = true
+        break
+    end
+end
+
+if not allowed then
+    Player:Kick("Você não está autorizado para Usar esse Script.")
+    return
+end
+
+-- Se passou na whitelist, continua com o menu
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local VirtualUser = game:GetService("VirtualUser")
